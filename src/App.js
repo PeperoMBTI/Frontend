@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import OnePage from './1';
+import HomePage from './HomePage';
+import TwoPage from './2';
+import ThreePage from './3';
+import FourPage from './4';
+import FivePage from './5';
+import SixPage from './6';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/1" element={<OnePage />} />
+      <Route path="/2" element={<TwoPage />} />
+      <Route path="/3" element={<ThreePage />} />
+      <Route path="/4" element={<FourPage />} />
+      <Route path="/5" element={<FivePage />} />
+      <Route path="/6" element={<SixPage />} />
+    </Routes>
   );
 }
 
