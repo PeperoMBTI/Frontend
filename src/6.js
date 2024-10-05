@@ -10,18 +10,18 @@ function SixPage() {
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      E: prevCounts.E + 1,
+      S: prevCounts.S + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/6', { state: { dataCounts } });
+    navigate('/7', { state: { dataCounts } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      I: prevCounts.I + 1,
+      N: prevCounts.N + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/6', { state: { dataCounts } });
+    navigate('/7', { state: { dataCounts } });
   };
 
   return (
