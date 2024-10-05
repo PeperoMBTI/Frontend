@@ -9,6 +9,7 @@ import FourPage from './4';
 import FivePage from './5';
 import SixPage from './6';
 import SevenPage from './7';
+import EightPage from './8';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/5" element={<FivePage />} />
       <Route path="/6" element={<SixPage />} />
       <Route path="/7" element={<SevenPage />} />
+      <Route path="/8" element={<EightPage />} />
     </Routes>
   );
 }
