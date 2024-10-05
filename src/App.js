@@ -13,6 +13,7 @@ import EightPage from './question/8';
 import NinePage from './question/9';
 import TenPage from './question/10';
 import ElevenPage from './question/11';
+import TwelvePage from './question/12';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path="/9" element={<NinePage />} />
       <Route path="/10" element={<TenPage />} />
       <Route path="/11" element={<ElevenPage />} />
+      <Route path="/12" element={<TwelvePage />} />
     </Routes>
   );
 }
