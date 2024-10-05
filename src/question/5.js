@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { DataContext } from './DataContext';
+import { DataContext } from '../DataContext';
 
-function SevenPage() {
+function FivePage() {
   const location = useLocation();
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
@@ -10,31 +10,31 @@ function SevenPage() {
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      F: prevCounts.F + 1,
+      E: prevCounts.E + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/8', { state: { dataCounts } });
+    navigate('/6', { state: { dataCounts } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      T: prevCounts.T + 1,
+      I: prevCounts.I + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/8', { state: { dataCounts } });
+    navigate('/6', { state: { dataCounts } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ESTJ.png' style={{width: '70px', height: 'auto'}}/>
+      <img src='/pepero/ESFJ.png' style={{width: '70px', height: 'auto'}}/>
       <br/>
-      <h3 className='question'>#7. 친구가 빼빼로를 받고<br/>감동의 눈물을 흘리며 고마워한다.<br/>나의 반응은? </h3>
+      <h3 className='question'>#5. 학교에서 처음 보는 친구가<br/>빼빼로데이라며 수제 빼빼로를 준다.<br/>나의 반응은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>
-            이렇게 기뻐해주다니!! 너무 좋다!!!
+            와 고마워!!! 내 빼빼로도 나눠줄게!<br/>빼빼로를 교환하고 스몰토크를 이어간다. 
         </button>
         <button className="answer-button" onClick={second}>
-            그렇게까지 감동받을 일이라고...?
+            ㅇ어..고마워...!<br/>고맙다고 말하지만 조금 부담스럽다.
         </button>
       </div>
 
@@ -49,4 +49,4 @@ function SevenPage() {
   );
 }
 
-export default SevenPage;
+export default FivePage;

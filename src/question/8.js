@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { DataContext } from './DataContext';
+import { DataContext } from '../DataContext';
 
-function TwoPage() {
+function EightPage() {
   const location = useLocation();
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
@@ -10,31 +10,31 @@ function TwoPage() {
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      N: prevCounts.N + 1,
+      P: prevCounts.P + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/3', { state: { dataCounts } });
+    navigate('/9', { state: { dataCounts } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      S: prevCounts.S + 1,
+      J: prevCounts.J + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/3', { state: { dataCounts } });
+    navigate('/9', { state: { dataCounts } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ENFP.png' style={{width: '70px', height: 'auto'}}/>
+      <img src='/pepero/ESTP.png' style={{width: '70px', height: 'auto'}}/>
       <br/>
-      <h3 className='question'>#2. 안 친한 친구가 빼빼로를 줬다. 나의 생각은?</h3>
+      <h3 className='question'>#8. 빼빼로 재료를 사러 마트에 갔는데<br/>참깨스틱이 품절이다.<br/>나의 행동은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>
-            무슨 의미지? 나랑 친해지고 싶은 건가?<br />날 좋아하나?
+            대충 에이스 사다가 빼빼로쿠키나 만들지 뭐.
         </button>
         <button className="answer-button" onClick={second}>
-            오, 맛있겠다. 잘 먹을게!
+            스틱형 아닌 빼빼로는 빼빼로가 아니다!<br/>동네 마트를 전부 뒤져 참깨스틱을 쟁취한다.
         </button>
       </div>
 
@@ -49,4 +49,4 @@ function TwoPage() {
   );
 }
 
-export default TwoPage;
+export default EightPage;

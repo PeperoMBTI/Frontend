@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { DataContext } from './DataContext';
+import { DataContext } from '../DataContext';
 
-function SixPage() {
+function NinePage() {
   const location = useLocation();
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
@@ -10,31 +10,31 @@ function SixPage() {
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      S: prevCounts.S + 1,
+      I: prevCounts.I + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/7', { state: { dataCounts } });
+    navigate('/10', { state: { dataCounts } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      N: prevCounts.N + 1,
+      E: prevCounts.E + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/7', { state: { dataCounts } });
+    navigate('/10', { state: { dataCounts } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ESFP.png' style={{width: '70px', height: 'auto'}}/>
+      <img src='/pepero/INFJ.png' style={{width: '70px', height: 'auto'}}/>
       <br/>
-      <h3 className='question'>#6. 궁극의 빼빼로 레시피에서<br/>녹인 초콜릿에 소금을 30g 넣으라고 한다.<br/>내 생각은? </h3>
+      <h3 className='question'>#9. 좋아하는 사람에게 빼빼로를 전달하려고 한다.<br/>나의 행동은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>
-            단짠이 유행이긴 하지. 일단 넣는다.
+            몰래 스리슬쩍 놓고 간다.
         </button>
         <button className="answer-button" onClick={second}>
-            소금 30g은 너무 많은 거 아니야?<br/>납득이 안되네;;
+            이거 내가 만든거야!<br/>먹어보고 어땠는지 말해줘!
         </button>
       </div>
 
@@ -49,4 +49,4 @@ function SixPage() {
   );
 }
 
-export default SixPage;
+export default NinePage;

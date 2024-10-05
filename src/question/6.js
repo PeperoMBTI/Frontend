@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { DataContext } from './DataContext';
+import { DataContext } from '../DataContext';
 
-function OnePage() {
+function SixPage() {
   const location = useLocation();
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
@@ -10,32 +10,34 @@ function OnePage() {
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      I: prevCounts.I + 1,
+      S: prevCounts.S + 1,
     }));
-    navigate('/2', { state: { dataCounts } });
+    console.log('Current dataCounts:', dataCounts);
+    navigate('/7', { state: { dataCounts } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
-      E: prevCounts.E + 1,
+      N: prevCounts.N + 1,
     }));
-    navigate('/2', { state: { dataCounts } });
+    console.log('Current dataCounts:', dataCounts);
+    navigate('/7', { state: { dataCounts } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ENFJ.png' style={{width: '70px', height: 'auto'}}/>
+      <img src='/pepero/ESFP.png' style={{width: '70px', height: 'auto'}}/>
       <br/>
-      <h3 className='question'>#1. 주변 사람들에게 나눠줄 빼빼로를 만들기로 했다. 이때 나는?</h3>
+      <h3 className='question'>#6. 궁극의 빼빼로 레시피에서<br/>녹인 초콜릿에 소금을 30g 넣으라고 한다.<br/>내 생각은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>
-            집에서 혼자 유튜브 영상 따라 만들어야겠다.
+            단짠이 유행이긴 하지. 일단 넣는다.
         </button>
         <button className="answer-button" onClick={second}>
-            친구들 다 모아서 같이 만들면 더 맛있겠지?!
+            소금 30g은 너무 많은 거 아니야?<br/>납득이 안되네;;
         </button>
       </div>
-      
+
       <ul>
         {Object.entries(dataCounts).map(([key, count]) => (
           <li key={key}>
@@ -47,4 +49,4 @@ function OnePage() {
   );
 }
 
-export default OnePage;
+export default SixPage;

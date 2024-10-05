@@ -1,16 +1,17 @@
 import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import OnePage from './1';
+import OnePage from './question/1';
 import HomePage from './HomePage';
-import TwoPage from './2';
-import ThreePage from './3';
-import FourPage from './4';
-import FivePage from './5';
-import SixPage from './6';
-import SevenPage from './7';
-import EightPage from './8';
-import NinePage from './9';
+import TwoPage from './question/2';
+import ThreePage from './question/3';
+import FourPage from './question/4';
+import FivePage from './question/5';
+import SixPage from './question/6';
+import SevenPage from './question/7';
+import EightPage from './question/8';
+import NinePage from './question/9';
+import TenPage from './question/10';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/7" element={<SevenPage />} />
       <Route path="/8" element={<EightPage />} />
       <Route path="/9" element={<NinePage />} />
+      <Route path="/10" element={<TenPage />} />
     </Routes>
   );
 }
