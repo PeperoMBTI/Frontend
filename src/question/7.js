@@ -7,13 +7,19 @@ function SevenPage() {
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state?.dataCounts) {
+      setDataCounts(location.state.dataCounts);
+    }
+  }, [location.state, setDataCounts]);
+
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
       F: prevCounts.F + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/8', { state: { dataCounts } });
+    navigate('/8', { state: { dataCounts: { ...dataCounts, F: dataCounts.F + 1 } } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
@@ -21,13 +27,14 @@ function SevenPage() {
       T: prevCounts.T + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/8', { state: { dataCounts } });
+    navigate('/8', { state: { dataCounts: { ...dataCounts, T: dataCounts.T + 1 } } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ESTJ.png' style={{width: '70px', height: 'auto'}}/>
-      <br/>
+      <div className="pepero-image-container">
+        <img src='/pepero/ESTJ.png' alt="결과 이미지" className="pepero-image" />
+      </div>
       <h3 className='question'>#7. 친구가 빼빼로를 받고<br/>감동의 눈물을 흘리며 고마워한다.<br/>나의 반응은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>

@@ -7,13 +7,19 @@ function EightPage() {
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state?.dataCounts) {
+      setDataCounts(location.state.dataCounts);
+    }
+  }, [location.state, setDataCounts]);
+
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
       P: prevCounts.P + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/9', { state: { dataCounts } });
+    navigate('/9', { state: { dataCounts: { ...dataCounts, P: dataCounts.P + 1 } } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
@@ -21,13 +27,14 @@ function EightPage() {
       J: prevCounts.J + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/9', { state: { dataCounts } });
+    navigate('/9', { state: { dataCounts: { ...dataCounts, J: dataCounts.J + 1 } } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ESTP.png' style={{width: '70px', height: 'auto'}}/>
-      <br/>
+      <div className="pepero-image-container">
+        <img src='/pepero/ESTP.png' alt="결과 이미지" className="pepero-image" />
+      </div>
       <h3 className='question'>#8. 빼빼로 재료를 사러 마트에 갔는데<br/>참깨스틱이 품절이다.<br/>나의 행동은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>

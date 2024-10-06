@@ -7,13 +7,19 @@ function ThreePage() {
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state?.dataCounts) {
+      setDataCounts(location.state.dataCounts);
+    }
+  }, [location.state, setDataCounts]);
+
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
       F: prevCounts.F + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/4', { state: { dataCounts } });
+    navigate('/4', { state: { dataCounts: { ...dataCounts, F: dataCounts.F + 1 } } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
@@ -21,13 +27,14 @@ function ThreePage() {
       T: prevCounts.T + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/4', { state: { dataCounts } });
+    navigate('/4', { state: { dataCounts: { ...dataCounts, T: dataCounts.T + 1 } } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ENTJ.png' style={{width: '70px', height: 'auto'}}/>
-      <br/>
+      <div className="pepero-image-container">
+        <img src='/pepero/ENTJ.png' alt="결과 이미지" className="pepero-image" />
+      </div>
       <h3 className='question'>#3. 내가 만든 빼빼로를 먹은 친구가 말했다.<br/>'이거 진짜 맛있는데 템퍼링이 잘못된 것 같아. 초콜릿이 너무 쉽게 녹음.'<br/>이때 나의 반응은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>

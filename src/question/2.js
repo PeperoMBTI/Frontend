@@ -7,13 +7,19 @@ function TwoPage() {
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state?.dataCounts) {
+      setDataCounts(location.state.dataCounts);
+    }
+  }, [location.state, setDataCounts]);
+
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
       N: prevCounts.N + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/3', { state: { dataCounts } });
+    navigate('/3', { state: { dataCounts: { ...dataCounts, N: dataCounts.N + 1 } } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
@@ -21,13 +27,14 @@ function TwoPage() {
       S: prevCounts.S + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/3', { state: { dataCounts } });
+    navigate('/3', { state: { dataCounts: { ...dataCounts, S: dataCounts.S + 1 } } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/ENFP.png' style={{width: '70px', height: 'auto'}}/>
-      <br/>
+      <div className="pepero-image-container">
+        <img src='/pepero/ENFP.png' alt="결과 이미지" className="pepero-image" />
+      </div>
       <h3 className='question'>#2. 안 친한 친구가 빼빼로를 줬다. 나의 생각은?</h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>

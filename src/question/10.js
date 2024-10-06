@@ -7,13 +7,19 @@ function TenPage() {
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state?.dataCounts) {
+      setDataCounts(location.state.dataCounts);
+    }
+  }, [location.state, setDataCounts]);
+
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
       S: prevCounts.S + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/11', { state: { dataCounts } });
+    navigate('/11', { state: { dataCounts: { ...dataCounts, S: dataCounts.S + 1 } } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
@@ -21,13 +27,14 @@ function TenPage() {
       N: prevCounts.N + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/11', { state: { dataCounts } });
+    navigate('/11', { state: { dataCounts: { ...dataCounts, N: dataCounts.N + 1 } } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/INFP.png' style={{width: '70px', height: 'auto'}}/>
-      <br/>
+      <div className="pepero-image-container">
+        <img src='/pepero/INFP.png' alt="결과 이미지" className="pepero-image" />
+      </div>
       <h3 className='question'>#10. 빼빼로를 만들 때 나의 스타일은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>
