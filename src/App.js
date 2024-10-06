@@ -18,6 +18,7 @@ import EnfjPage from './result/EnfjPage';
 import EnfpPage from './result/EnfpPage';
 import EntjPage from './result/EntjPage';
 import EntpPage from './result/EntpPage';
+import EsfjPage from './result/EsfjPage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/ENFP" element={<EnfpPage />} />
       <Route path="/ENTJ" element={<EntjPage />} />
       <Route path="/ENTP" element={<EntpPage />} />
+      <Route path="/ESFJ" element={<EsfjPage />} />
     </Routes>
   );
 }
