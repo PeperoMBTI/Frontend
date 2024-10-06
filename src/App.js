@@ -17,6 +17,7 @@ import TwelvePage from './question/12';
 import EnfjPage from './result/EnfjPage';
 import EnfpPage from './result/EnfpPage';
 import EntjPage from './result/EntjPage';
+import EntpPage from './result/EntpPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path="/ENFJ" element={<EnfjPage />} />
       <Route path="/ENFP" element={<EnfpPage />} />
       <Route path="/ENTJ" element={<EntjPage />} />
+      <Route path="/ENTP" element={<EntpPage />} />
     </Routes>
   );
 }
