@@ -23,6 +23,7 @@ import EsfpPage from './result/EsfpPage';
 import EstjPage from './result/EstjPage';
 import EstpPage from './result/EstpPage';
 import InfjPage from './result/InfjPage';
+import InfpPage from './result/InfpPage';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
       <Route path="/ESTJ" element={<EstjPage />} />
       <Route path="/ESTP" element={<EstpPage />} />
       <Route path="/INFJ" element={<InfjPage />} />
+      <Route path="/INFP" element={<InfpPage />} />
     </Routes>
   );
 }
