@@ -6,7 +6,7 @@ function TwelvePage() {
   const location = useLocation();
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
-  const [result, setResult] = useState('ENFP');
+  const [result, setResult] = useState('ENTJ');
 
   useEffect(() => {
     if (location.state?.dataCounts) {
