@@ -6,7 +6,7 @@ function TwelvePage() {
   const location = useLocation();
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
-  const [result, setResult] = useState('ENFJ');
+  const [result, setResult] = useState('ENFP');
 
   useEffect(() => {
     if (location.state?.dataCounts) {
@@ -22,6 +22,36 @@ function TwelvePage() {
 
     if (result === 'ENFJ') {
       navigate('/ENFJ');
+    } else if (result === 'ENFP') {
+      navigate('/ENFP');
+    } else if (result === 'ENTJ') {
+      navigate('/ENTJ');
+    } else if (result === 'ENTP') {
+      navigate('/ENTP');
+    } else if (result === 'ESFJ') {
+      navigate('/ESFJ');
+    } else if (result === 'ESFP') {
+      navigate('/ESFP');
+    } else if (result === 'ESTJ') {
+      navigate('/ESTJ');
+    } else if (result === 'ESTP') {
+      navigate('/ESTP');
+    } else if (result === 'INFJ') {
+      navigate('/INFJ');
+    } else if (result === 'INFP') {
+      navigate('/INFP');
+    }else if (result === 'INTJ') {
+      navigate('/INTJ');
+    } else if (result === 'INTP') {
+      navigate('/INTP');
+    }else if (result === 'ISFJ') {
+      navigate('/ISFJ');
+    } else if (result === 'ISFP') {
+      navigate('/ISFP');
+    } else if (result === 'ISTJ') {
+      navigate('/ISTJ');
+    }else {
+      navigate('/ISTP');
     }
   };
   const second = () => {
