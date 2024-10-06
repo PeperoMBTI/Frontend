@@ -27,6 +27,7 @@ import InfpPage from './result/InfpPage';
 import IntjPage from './result/IntjPage';
 import IntpPage from './result/IntpPage';
 import IsfjPage from './result/IsfjPage';
+import IsfpPage from './result/IsfpPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
       <Route path="/INTJ" element={<IntjPage />} />
       <Route path="/INTP" element={<IntpPage />} />
       <Route path="/ISFJ" element={<IsfjPage />} />
+      <Route path="/ISFP" element={<IsfpPage />} />
     </Routes>
   );
 }
