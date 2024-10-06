@@ -7,13 +7,19 @@ function NinePage() {
   const { dataCounts, setDataCounts } = useContext(DataContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.state?.dataCounts) {
+      setDataCounts(location.state.dataCounts);
+    }
+  }, [location.state, setDataCounts]);
+
   const first = () => {
     setDataCounts((prevCounts) => ({
       ...prevCounts,
       I: prevCounts.I + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/10', { state: { dataCounts } });
+    navigate('/10', { state: { dataCounts: { ...dataCounts, I: dataCounts.I + 1 } } });
   };
   const second = () => {
     setDataCounts((prevCounts) => ({
@@ -21,13 +27,14 @@ function NinePage() {
       E: prevCounts.E + 1,
     }));
     console.log('Current dataCounts:', dataCounts);
-    navigate('/10', { state: { dataCounts } });
+    navigate('/10', { state: { dataCounts: { ...dataCounts, E: dataCounts.E + 1 } } });
   };
 
   return (
     <div className='container'>
-      <img src='/pepero/INFJ.png' style={{width: '70px', height: 'auto'}}/>
-      <br/>
+      <div className="pepero-image-container">
+        <img src='/pepero/INFJ.png' alt="결과 이미지" className="pepero-image" />
+      </div>
       <h3 className='question'>#9. 좋아하는 사람에게 빼빼로를 전달하려고 한다.<br/>나의 행동은? </h3>
       <div className='button-container'>
         <button className="answer-button" onClick={first}>

@@ -25,7 +25,20 @@ function HomePage() {
   const sliderTrackRef = useRef(null);
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
-  const { dataCounts } = useContext(DataContext);
+  const { dataCounts, setDataCounts } = useContext(DataContext);
+
+  useEffect(() => {
+    setDataCounts({
+      E: 0,
+      I: 0,
+      S: 0,
+      N: 0,
+      T: 0,
+      F: 0,
+      J: 0,
+      P: 0,
+    });
+  }, [setDataCounts]);
 
   const goToNext = () => {
     navigate('/1', { state: { dataCounts } });
@@ -74,6 +87,7 @@ function HomePage() {
         <button className="start-button" onClick={goToNext}>
           시작하기
         </button>
+        <br/><br/><br/>
       </div>
     </div>
   );
