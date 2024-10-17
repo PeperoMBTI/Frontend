@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from './DataContext';
+import axios from 'axios';
+import { Circles } from 'react-loader-spinner';
 
 const images = [
   '/pepero/ENFJ.png',
@@ -26,6 +28,9 @@ function HomePage() {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
   const { dataCounts, setDataCounts } = useContext(DataContext);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const animationIdRef = useRef(null);
 
   useEffect(() => {
     setDataCounts({
@@ -44,7 +49,30 @@ function HomePage() {
     navigate('/1', { state: { dataCounts } });
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+    
+  //   const track = sliderTrackRef.current;
+  //   if (!track) return;
+
+  //   let position = 0;
+
+  //   const moveSlider = () => {
+  //     position -= 2;
+  //     track.style.transform = `translateX(${position}px)`;
+
+  //     if (Math.abs(position) >= track.scrollWidth / 2) {
+  //       position = 0;
+  //     }
+
+  //     requestAnimationFrame(moveSlider);
+  //   };
+
+  //   moveSlider();
+
+  //   return () => cancelAnimationFrame(moveSlider);
+  // }, []);
+
+  const startAnimation = () => {
     const track = sliderTrackRef.current;
     if (!track) return;
 
@@ -58,13 +86,54 @@ function HomePage() {
         position = 0;
       }
 
-      requestAnimationFrame(moveSlider);
+      animationIdRef.current = requestAnimationFrame(moveSlider); // 애니메이션 반복
     };
 
-    moveSlider();
+    moveSlider();  // 애니메이션 시작
 
-    return () => cancelAnimationFrame(moveSlider);
-  }, []);
+    return () => cancelAnimationFrame(animationIdRef.current); // 애니메이션 중단
+  };
+
+  useEffect(() => {
+    const fetchDataAndStartAnimation = async () => {
+      await getCount(); // 참여자 수를 먼저 가져온다
+
+      if (!loading) {
+        startAnimation(); // 로딩이 완료되면 애니메이션 시작
+      }
+    };
+
+    fetchDataAndStartAnimation(); // 비동기 함수 호출
+  }, [loading]);
+
+  const getCount = async () => {
+    try {
+      const response = await axios.get('http://192.168.45.77:8080/participant');
+      const data = response.data;
+
+      setCount(data.participants);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  // useEffect(() => {
+  //   getCount();
+  // }, []);
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <Circles color="#00BFFF" height={80} width={80} />
+      </div>
+    );
+  }
 
   return (
     <div className="App">

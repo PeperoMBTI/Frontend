@@ -215,3 +215,10 @@
   height: auto;
   object-fit: contain;
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
