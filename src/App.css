@@ -91,7 +91,8 @@
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   white-space: normal;
   text-align: center;
 }

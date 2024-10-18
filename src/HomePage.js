@@ -49,29 +49,6 @@ function HomePage() {
     navigate('/1', { state: { dataCounts } });
   };
 
-  // useEffect(() => {
-    
-  //   const track = sliderTrackRef.current;
-  //   if (!track) return;
-
-  //   let position = 0;
-
-  //   const moveSlider = () => {
-  //     position -= 2;
-  //     track.style.transform = `translateX(${position}px)`;
-
-  //     if (Math.abs(position) >= track.scrollWidth / 2) {
-  //       position = 0;
-  //     }
-
-  //     requestAnimationFrame(moveSlider);
-  //   };
-
-  //   moveSlider();
-
-  //   return () => cancelAnimationFrame(moveSlider);
-  // }, []);
-
   const startAnimation = () => {
     const track = sliderTrackRef.current;
     if (!track) return;
@@ -89,26 +66,26 @@ function HomePage() {
       animationIdRef.current = requestAnimationFrame(moveSlider); // 애니메이션 반복
     };
 
-    moveSlider();  // 애니메이션 시작
+    moveSlider();
 
     return () => cancelAnimationFrame(animationIdRef.current); // 애니메이션 중단
   };
 
   useEffect(() => {
     const fetchDataAndStartAnimation = async () => {
-      await getCount(); // 참여자 수를 먼저 가져온다
+      await getCount();
 
       if (!loading) {
-        startAnimation(); // 로딩이 완료되면 애니메이션 시작
+        startAnimation();
       }
     };
 
-    fetchDataAndStartAnimation(); // 비동기 함수 호출
+    fetchDataAndStartAnimation();
   }, [loading]);
 
   const getCount = async () => {
     try {
-      const response = await axios.get('http://192.168.45.77:8080/participant');
+      const response = await axios.get('http://localhost:8080/participant');
       const data = response.data;
 
       setCount(data.participants);

@@ -32,7 +32,7 @@ function OnePage() {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://192.168.45.77:8080/question');
+      const response = await axios.get('http://localhost:8080/question');
       const data = response.data;
 
       setQuestions(data.question);
@@ -55,7 +55,7 @@ function OnePage() {
       console.log(dataCounts.F);
       console.log(dataCounts.J);
       console.log(dataCounts.P);
-      const response = await axios.post('http://192.168.45.77:8080/result', {
+      const response = await axios.post('http://localhost:8080/result', {
         e: dataCounts.E,
         i: dataCounts.I,
         s: dataCounts.S,
@@ -148,7 +148,7 @@ function OnePage() {
 
   return (
     <div className='container'>
-      <br/><br/><br/>
+      <br/>
       <div className="pepero-image-container">
         <img src={images[currentIndex]} alt="뺴뺴로" className="pepero-image" />
       </div>
@@ -162,13 +162,6 @@ function OnePage() {
           </button>
         </div>
       <br/><br/><br/>
-      {<ul>
-        {Object.entries(dataCounts).map(([key, count]) => (
-          <li key={key}>
-            {key}: {count}개
-          </li>
-        ))}
-      </ul>}
     </div>
   );
 }
