@@ -85,7 +85,9 @@ function HomePage() {
 
   const getCount = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/participant');
+      const response = await axios.get('https://port-0-peperombti-m31i6oimc9497813.sel4.cloudtype.app/participant', {
+        withCredentials: true
+    });
       const data = response.data;
 
       setCount(data.participants);

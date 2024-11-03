@@ -32,7 +32,9 @@ function OnePage() {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/question');
+      const response = await axios.get('https://port-0-peperombti-m31i6oimc9497813.sel4.cloudtype.app/question', {
+        withCredentials: true
+    });
       const data = response.data;
 
       setQuestions(data.question);
@@ -55,7 +57,7 @@ function OnePage() {
       console.log(dataCounts.F);
       console.log(dataCounts.J);
       console.log(dataCounts.P);
-      const response = await axios.post('http://localhost:8080/result', {
+      const response = await axios.post('https://port-0-peperombti-m31i6oimc9497813.sel4.cloudtype.app/result', {
         e: dataCounts.E,
         i: dataCounts.I,
         s: dataCounts.S,
@@ -64,7 +66,9 @@ function OnePage() {
         f: dataCounts.F,
         j: dataCounts.J,
         p: dataCounts.P,
-      });
+      }, {
+        withCredentials: true
+    });
       const result = response.data.mbti;
       console.log("result: " + result);
       if (result === 'ENFJ') {
