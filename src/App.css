@@ -201,6 +201,28 @@
   box-shadow: none;
 }
 
+.share-button {
+  font-size: 1.0rem;
+  font-weight: bold;
+  padding: 15px 15px;
+  color: white;
+  background-color: firebrick;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.share-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-button:active {
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
 .pepero-image-container {
   display: flex;
   justify-content: center;
