@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from './DataContext';
+import axios from 'axios';
+import { Circles } from 'react-loader-spinner';
 
 const images = [
   '/pepero/ENFJ.png',
@@ -26,6 +28,9 @@ function HomePage() {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
   const { dataCounts, setDataCounts } = useContext(DataContext);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const animationIdRef = useRef(null);
 
   useEffect(() => {
     setDataCounts({
@@ -44,7 +49,7 @@ function HomePage() {
     navigate('/1', { state: { dataCounts } });
   };
 
-  useEffect(() => {
+  const startAnimation = () => {
     const track = sliderTrackRef.current;
     if (!track) return;
 
@@ -58,13 +63,56 @@ function HomePage() {
         position = 0;
       }
 
-      requestAnimationFrame(moveSlider);
+      animationIdRef.current = requestAnimationFrame(moveSlider); // 애니메이션 반복
     };
 
     moveSlider();
 
-    return () => cancelAnimationFrame(moveSlider);
-  }, []);
+    return () => cancelAnimationFrame(animationIdRef.current); // 애니메이션 중단
+  };
+
+  useEffect(() => {
+    const fetchDataAndStartAnimation = async () => {
+      await getCount();
+
+      if (!loading) {
+        startAnimation();
+      }
+    };
+
+    fetchDataAndStartAnimation();
+  }, [loading]);
+
+  const getCount = async () => {
+    try {
+      const response = await axios.get('https://port-0-peperombti-m31i6oimc9497813.sel4.cloudtype.app/participant', {
+        withCredentials: true
+    });
+      const data = response.data;
+
+      setCount(data.participants);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  // useEffect(() => {
+  //   getCount();
+  // }, []);
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <Circles color="#00BFFF" height={80} width={80} />
+      </div>
+    );
+  }
 
   return (
     <div className="App">
